@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>91网 - 综合视频内容导航与在线观看指南</title>
+<meta name="description" content="91网是一个面向中文用户的综合视频内容导航平台，提供视频分类浏览、热门推荐、内容指南与常见问题解答，帮助用户快速了解平台功能与使用方式。">
+<meta name="keywords" content="91网,91网导航,综合视频,视频分类,在线观看指南,91网使用帮助">
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:#0f1115;color:#e8eaf0;line-height:1.7;font-size:15px}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+/* header */
+.site-header{background:linear-gradient(135deg,#1a1d26 0%,#141720 100%);border-bottom:1px solid #252a36;position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:700;letter-spacing:.5px}
+.logo-mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#4f7cff,#7a4fff);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#fff;flex-shrink:0}
+.logo span{background:linear-gradient(90deg,#6b9bff,#a07bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav-links{display:flex;gap:26px;font-size:14px;color:#9aa3b8}
+.nav-links a{transition:color .2s}
+.nav-links a:hover{color:#7ea4ff}
+
+/* hero */
+.hero{background:radial-gradient(circle at 20% 10%,rgba(79,124,255,.16),transparent 55%),radial-gradient(circle at 85% 30%,rgba(160,123,255,.12),transparent 50%),#0f1115;padding:64px 0 54px;border-bottom:1px solid #1c202b}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.hero h1{font-size:38px;line-height:1.3;font-weight:800;margin-bottom:18px;letter-spacing:-.5px}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,#6b9bff,#a07bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:#9aa3b8;font-size:15.5px;max-width:540px;margin-bottom:26px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;padding:11px 26px;border-radius:9px;font-size:14.5px;font-weight:600;transition:transform .18s,box-shadow .18s,background .18s}
+.btn-primary{background:linear-gradient(135deg,#4f7cff,#7a4fff);color:#fff;box-shadow:0 6px 20px rgba(79,124,255,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(79,124,255,.42)}
+.btn-ghost{border:1px solid #2d3444;color:#c3cade}
+.btn-ghost:hover{border-color:#4f7cff;color:#8fb0ff}
+.hero-panel{background:#161a24;border:1px solid #242a38;border-radius:16px;padding:22px 24px}
+.hero-panel h3{font-size:14px;color:#8f98ad;font-weight:600;margin-bottom:14px;letter-spacing:.5px}
+.hero-panel ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.hero-panel li{display:flex;align-items:center;gap:10px;font-size:14px;color:#c3cade}
+.dot{width:7px;height:7px;border-radius:50%;background:#4f7cff;flex-shrink:0}
+.hero-panel li:nth-child(2) .dot{background:#a07bff}
+.hero-panel li:nth-child(3) .dot{background:#4fd1c5}
+.hero-panel li:nth-child(4) .dot{background:#f0a04f}
+
+/* section common */
+.section{padding:56px 0}
+.section-head{margin-bottom:30px}
+.section-head h2{font-size:25px;font-weight:700;margin-bottom:8px;letter-spacing:-.3px}
+.section-head p{color:#8f98ad;font-size:14.5px}
+
+/* category grid */
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.cat-card{background:#161a24;border:1px solid #242a38;border-radius:13px;padding:22px 20px;transition:border-color .2s,transform .2s,background .2s}
+.cat-card:hover{border-color:#3b4a6e;transform:translateY(-3px);background:#1a1f2c}
+.cat-icon{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:14px;background:rgba(79,124,255,.14);color:#7ea4ff}
+.cat-card:nth-child(2) .cat-icon{background:rgba(160,123,255,.14);color:#b39bff}
+.cat-card:nth-child(3) .cat-icon{background:rgba(79,209,197,.14);color:#5fd6c9}
+.cat-card:nth-child(4) .cat-icon{background:rgba(240,160,79,.14);color:#f0b06f}
+.cat-card:nth-child(5) .cat-icon{background:rgba(240,95,130,.14);color:#f08aa5}
+.cat-card:nth-child(6) .cat-icon{background:rgba(95,190,240,.14);color:#7ec8f0}
+.cat-card:nth-child(7) .cat-icon{background:rgba(190,240,95,.14);color:#b8e06f}
+.cat-card:nth-child(8) .cat-icon{background:rgba(200,120,240,.14);color:#c78af0}
+.cat-card h3{font-size:15.5px;font-weight:600;margin-bottom:7px}
+.cat-card p{font-size:13px;color:#8f98ad;line-height:1.6}
+
+/* hot list */
+.hot-layout{display:grid;grid-template-columns:1.4fr 1fr;gap:24px}
+.hot-main{background:#161a24;border:1px solid #242a38;border-radius:14px;padding:26px 28px}
+.hot-main h3{font-size:17px;margin-bottom:18px;display:flex;align-items:center;gap:9px}
+.badge{font-size:11px;background:linear-gradient(135deg,#4f7cff,#7a4fff);color:#fff;padding:2px 9px;border-radius:20px;font-weight:600}
+.hot-list{list-style:none;display:flex;flex-direction:column;gap:2px}
+.hot-list li{display:flex;align-items:center;gap:14px;padding:13px 10px;border-radius:9px;transition:background .18s}
+.hot-list li:hover{background:#1c2230}
+.rank{font-size:14px;font-weight:800;width:24px;text-align:center;color:#5a6478;flex-shrink:0}
+.hot-list li:nth-child(1) .rank{color:#f0b06f}
+.hot-list li:nth-child(2) .rank{color:#c3cade}
+.hot-list li:nth-child(3) .rank{color:#d0906a}
+.hot-info{flex:1;min-width:0}
+.hot-info strong{display:block;font-size:14.5px;font-weight:600;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hot-info span{font-size:12.5px;color:#7b8499}
+.hot-tag{font-size:11.5px;color:#7ea4ff;background:rgba(79,124,255,.12);padding:2px 9px;border-radius:6px;flex-shrink:0}
+.side-card{background:#161a24;border:1px solid #242a38;border-radius:14px;padding:24px 26px;margin-bottom:20px}
+.side-card h3{font-size:16px;margin-bottom:14px}
+.side-card p{font-size:13.5px;color:#9aa3b8;margin-bottom:10px}
+.side-card p:last-child{margin-bottom:0}
+.side-card strong{color:#c3cade}
+
+/* guide */
+.guide-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.guide-card{background:#161a24;border:1px solid #242a38;border-radius:14px;padding:26px 24px}
+.guide-num{font-size:13px;font-weight:800;color:#4f7cff;letter-spacing:1px;margin-bottom:12px}
+.guide-card h3{font-size:16.5px;margin-bottom:10px}
+.guide-card p{font-size:13.5px;color:#9aa3b8}
+
+/* article block */
+.article-block{background:#141822;border:1px solid #212734;border-radius:16px;padding:36px 40px}
+.article-block h2{font-size:22px;margin-bottom:18px}
+.article-block h3{font-size:16.5px;margin:24px 0 10px;color:#c3cade}
+.article-block p{font-size:14.5px;color:#9aa3b8;margin-bottom:12px}
+.article-block ul{margin:0 0 14px 20px;color:#9aa3b8;font-size:14.5px}
+.article-block li{margin-bottom:7px}
+
+/* faq */
+.faq-list{display:flex;flex-direction:column;gap:12px}
+.faq-item{background:#161a24;border:1px solid #242a38;border-radius:12px;overflow:hidden}
+.faq-q{padding:18px 24px;font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;user-select:none}
+.faq-q::after{content:"+";font-size:20px;color:#5f6b84;font-weight:400;transition:transform .25s;flex-shrink:0}
+.faq-item.open .faq-q::after{transform:rotate(45deg);color:#7ea4ff}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-a-inner{padding:0 24px 20px;font-size:14px;color:#9aa3b8}
+.faq-item.open .faq-a{max-height:400px}
+
+/* footer */
+.site-footer{background:#0b0d12;border-top:1px solid #1c202b;padding:46px 0 30px;margin-top:20px}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:34px;margin-bottom:34px}
+.footer-brand .logo{margin-bottom:14px}
+.footer-brand p{font-size:13.5px;color:#7b8499;max-width:300px}
+.footer-col h4{font-size:14px;margin-bottom:15px;color:#c3cade}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.footer-col a{font-size:13.5px;color:#7b8499;transition:color .2s}
+.footer-col a:hover{color:#7ea4ff}
+.footer-bottom{border-top:1px solid #1c202b;padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:13px;color:#5f6b84}
+
+/* responsive */
+@media(max-width:960px){
+.hero-grid{grid-template-columns:1fr;gap:34px}
+.cat-grid{grid-template-columns:repeat(2,1fr)}
+.hot-layout{grid-template-columns:1fr}
+.guide-grid{grid-template-columns:1fr}
+.footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+.nav-links{display:none}
+.hero{padding:44px 0 40px}
+.hero h1{font-size:27px}
+.section{padding:40px 0}
+.cat-grid{grid-template-columns:1fr 1fr;gap:12px}
+.cat-card{padding:18px 16px}
+.article-block{padding:26px 22px}
+.footer-grid{grid-template-columns:1fr}
+.footer-bottom{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="#" class="logo">
+      <span class="logo-mark">91</span>
+      <span>91网</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#categories">内容分类</a>
+      <a href="#hot">热门推荐</a>
+      <a href="#guide">使用指南</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>91网 - <em>综合视频内容导航</em><br>与在线观看指南</h1>
+        <p>91网是一个面向中文用户的视频内容导航平台，聚合多类型视频分类，提供清晰的浏览入口、热门内容参考与使用指引，帮助用户高效找到自己感兴趣的内容方向。</p>
+        <div class="hero-actions">
+          <a href="#categories" class="btn btn-primary">浏览内容分类</a>
+          <a href="#guide" class="btn btn-ghost">查看使用指南</a>
+        </div>
+      </div>
+      <aside class="hero-panel">
+        <h3>平台核心特点</h3>
+        <ul>
+          <li><span class="dot"></span>多类型视频分类，结构清晰</li>
+          <li><span class="dot"></span>热门内容参考，快速定位</li>
+          <li><span class="dot"></span>简洁导航设计，浏览高效</li>
+          <li><span class="dot"></span>使用指南与常见问题支持</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="section" id="categories">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>内容分类导航</h2>
+        <p>按内容方向划分的浏览入口，方便根据兴趣快速定位。</p>
+      </div>
+      <div class="cat-grid">
+        <div class="cat-card">
+          <div class="cat-icon">▶</div>
+          <h3>综合视频</h3>
+          <p>覆盖多种题材的综合视频内容入口，适合广泛浏览。</p>
+        </div>
+        <div class="cat-card">
+          <div class="cat-icon">★</div>
+          <h3>热门推荐</h3>
+          <p>汇总近期关注度较高的内容方向，便于快速了解热门。</p>
+        </div>
+        <div class="cat-card">
+          <div class="cat-icon">◈</div>
+          <h3>分类精选</h3>
+          <p>按主题整理的精选内容，减少无效浏览时间。</p>
+        </div>
+        <div class="cat-card">
+          <div class="cat-icon">◎</div>
+          <h3>最新更新</h3>
+          <p>展示近期更新的内容条目，方便持续关注。</p>
+        </div>
+        <div class="cat-card">
+          <div class="cat-icon">☰</div>
+          <h3>内容榜单</h3>
+          <p>以浏览热度为参考的内容排行，提供选择依据。</p>
+        </div>
+        <div class="cat-card">
+          <div class="cat-icon">◇</div>
+          <h3>专题合集</h3>
+          <p>围绕特定主题聚合的内容合集，浏览更连贯。</p>
+        </div>
+        <div class="cat-card">
+          <div class="cat-icon">✎</div>
+          <h3>使用帮助</h3>
+          <p>平台功能说明与操作指引，降低上手门槛。</p>
+        </div>
+        <div class="cat-card">
+          <div class="cat-icon">⚑</div>
+          <h3>安全提示</h3>
+          <p>浏览注意事项与网络安全建议，保障使用体验。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hot -->
+  <section class="section" id="hot" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>热门内容参考</h2>
+        <p>以下条目为内容方向示例，用于说明平台的信息组织方式。</p>
+      </div>
+      <div class="hot-layout">
+        <div class="hot-main">
+          <h3>近期关注方向 <span class="badge">参考</span></h3>
+          <ul class="hot-list">
+            <li><span class="rank">01</span><div class="hot-info"><strong>综合类视频内容精选</strong><span>多题材综合 · 内容方向示例</span></div><span class="hot-tag">综合</span></li>
+            <li><span class="rank">02</span><div class="hot-info"><strong>热门主题内容合集</strong><span>按主题聚合 · 便于连续浏览</span></div><span class="hot-tag">合集</span></li>
+            <li><span class="rank">03</span><div class="hot-info"><strong>近期更新内容一览</strong><span>更新方向 · 持续关注</span></div><span class="hot-tag">更新</span></li>
+            <li><span class="rank">04</span><div class="hot-info"><strong>分类精选推荐</strong><span>编辑整理 · 减少筛选成本</span></div><span class="hot-tag">精选</span></li>
+            <li><span class="rank">05</span><div class="hot-info"><strong>内容榜单参考</strong><span>热度排序 · 选择参考</span></div><span class="hot-tag">榜单</span></li>
+            <li><span class="rank">06</span><div class="hot-info"><strong>专题内容聚合</strong><span>围绕主题 · 系统浏览</span></div><span class="hot-tag">专题</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="side-card">
+            <h3>如何选择内容方向</h3>
+            <p>先从自己感兴趣的大类入手，再通过分类和榜单逐步缩小范围，比盲目浏览更高效。</p>
+            <p><strong>建议：</strong>优先使用分类入口，再结合热门参考，能更快找到符合预期的内容。</p>
+          </div>
+          <div class="side-card">
+            <h3>浏览体验建议</h3>
+            <p>保持浏览器为较新版本，网络环境稳定，有助于获得更流畅的浏览体验。</p>
+            <p>遇到页面加载异常时，可尝试刷新或更换网络环境后重新访问。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guide -->
+  <section class="section" id="guide" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>使用指南</h2>
+        <p>三步了解 91网 的基本使用方式与浏览路径。</p>
+      </div>
+      <div class="guide-grid">
+        <div class="guide-card">
+          <div class="guide-num">STEP 01</div>
+          <h3>确定浏览方向</h3>
+          <p>进入首页后，先浏览内容分类区域，根据兴趣选择对应的大类入口，避免在无关内容上花费时间。</p>
+        </div>
+        <div class="guide-card">
+          <div class="guide-num">STEP 02</div>
+          <h3>结合热门与榜单</h3>
+          <p>如果不确定看什么，可参考热门推荐与内容榜单，这些区域按关注度整理，适合快速做选择。</p>
+        </div>
+        <div class="guide-card">
+          <div class="guide-num">STEP 03</div>
+          <h3>持续关注更新</h3>
+          <p>通过最新更新与专题合集区域，可以持续跟踪自己感兴趣的内容方向，形成稳定的浏览习惯。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Article -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <article class="article-block">
+        <h2>关于 91网 的内容组织与使用说明</h2>
+        <p>91网 是一个以视频内容导航为核心的综合平台，主要作用是把分散的内容方向整理成清晰的分类结构，让用户能够通过较少的操作找到感兴趣的内容入口。与单纯的内容列表不同，91网 更强调分类的合理性与浏览路径的顺畅度。</p>
+
+        <h3>平台的内容组织逻辑</h3>
+        <p>平台内容通常按照题材、主题、更新时间和关注热度等维度进行组织。分类入口解决“看什么方向”的问题，热门推荐和榜单解决“先看哪个”的问题，最新更新和专题合集则解决“持续关注”的问题。三者结合，构成相对完整的浏览路径。</p>
+        <ul>
+          <li>分类入口：按内容方向划分，适合有明确偏好的用户。</li>
+          <li>热门与榜单：按关注度整理，适合没有明确目标的用户。</li>
+          <li>更新与专题：按时间或主题聚合，适合持续跟踪的用户。</li>
+        </ul>
+
+        <h3>适合的使用场景</h3>
+        <p>91网 适合希望在较短时间内了解内容全貌、快速定位感兴趣方向的用户。对于日常浏览、主题查找和内容方向参考等场景，分类导航都能提供较为直接的帮助。同时，平台也提供使用帮助与安全提示，方便新用户熟悉基本操作。</p>
+
+        <h3>浏览时的注意事项</h3>
+        <p>在使用任何视频类平台时，都建议保持理性的浏览习惯。合理安排时间，注意个人信息保护，不随意点击来源不明的链接或下载未知文件，是保障自身网络安全的基本做法。平台提供的安全提示区域也会持续说明相关注意事项。</p>
+
+        <h3>关于内容信息的说明</h3>
+        <p>本页面所展示的分类名称、内容方向与条目示例，主要用于说明平台的信息组织方式，不构成对具体内容的推荐或承诺。实际可浏览的内容以平台页面为准，用户应根据自身需求与判断进行选择。</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>常见问题</h2>
+        <p>关于 91网 使用过程中的常见疑问整理。</p>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q">91网 主要提供什么内容？</div>
+          <div class="faq-a"><div class="faq-a-inner">91网 是一个综合视频内容导航平台，主要提供内容分类浏览、热门方向参考、更新与专题聚合等导航功能，帮助用户更快找到感兴趣的内容方向。</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">如何快速找到想看的内容方向？</div>
+          <div class="faq-a"><div class="faq-a-inner">建议先通过内容分类确定大类，再结合热门推荐或内容榜单缩小范围。如果已有明确主题，可以直接使用专题合集或搜索功能定位。</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">页面加载异常怎么办？</div>
+          <div class="faq-a"><div class="faq-a-inner">可以先尝试刷新页面，或检查网络连接是否稳定。如果问题持续存在，建议更换网络环境或使用较新版本的浏览器重新访问。</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">浏览时需要注意哪些安全事项？</div>
+          <div class="faq-a"><div class="faq-a-inner">建议不点击来源不明的链接，不下载未知来源的文件，注意保护个人隐私信息，并合理安排浏览时间，保持健康的网络使用习惯。</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">平台内容会持续更新吗？</div>
+          <div class="faq-a"><div class="faq-a-inner">平台会围绕内容分类与专题方向进行持续整理，具体更新情况以页面实际展示为准，用户可通过最新更新区域关注感兴趣的方向。</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-mark">91</span><span>91网</span></div>
+        <p>综合视频内容导航平台，提供分类浏览、热门参考与使用指南，帮助用户高效定位感兴趣的内容方向。</p>
+      </div>
+      <div class="footer-col">
+        <h4>内容导航</h4>
+        <ul>
+          <li><a href="#categories">内容分类</a></li>
+          <li><a href="#hot">热门推荐</a></li>
+          <li><a href="#guide">使用指南</a></li>
+          <li><a href="#faq">常见问题</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>内容方向</h4>
+        <ul>
+          <li><a href="#categories">综合视频</a></li>
+          <li><a href="#categories">分类精选</a></li>
+          <li><a href="#categories">最新更新</a></li>
+          <li><a href="#categories">专题合集</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>帮助支持</h4>
+        <ul>
+          <li><a href="#guide">浏览路径说明</a></li>
+          <li><a href="#faq">常见问题</a></li>
+          <li><a href="#categories">安全提示</a></li>
+          <li><a href="#categories">使用帮助</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 91网 · 综合视频内容导航平台</span>
+      <span>请合理安排浏览时间，注意网络安全与个人信息保护</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(function(q){
+  q.addEventListener('click',function(){
+    var item=q.parentElement;
+    var isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open');});
+    if(!isOpen){item.classList.add('open');}
+  });
+});
+</script>
+
+</body>
+</html>
