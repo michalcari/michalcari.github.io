@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>51动漫-动漫分类浏览与新番追更指南</title>
+<meta name="description" content="51动漫为用户提供动漫分类浏览、新番追更、口碑榜单与观看体验指南，帮助你快速找到适合自己口味的动画作品。">
+<meta name="keywords" content="51动漫,动漫分类,新番追更,动漫榜单,动画推荐,在线动漫">
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #ff5c8a;
+  --primary-dark: #e63e6d;
+  --secondary: #6c5ce7;
+  --accent: #00cec9;
+  --bg: #fdf7fa;
+  --surface: #ffffff;
+  --text: #2d2a3a;
+  --text-light: #6b6779;
+  --border: #f0e6ec;
+  --shadow: 0 4px 20px rgba(255, 92, 138, 0.08);
+  --shadow-hover: 0 8px 30px rgba(255, 92, 138, 0.16);
+}
+
+body {
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ========== 页眉 ========== */
+.site-header {
+  background: linear-gradient(135deg, #ff5c8a 0%, #6c5ce7 100%);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 16px rgba(108, 92, 231, 0.2);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  backdrop-filter: blur(4px);
+}
+
+.main-nav {
+  display: flex;
+  gap: 6px;
+  list-style: none;
+}
+
+.main-nav a {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.25s, color 0.25s;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+
+/* ========== 首屏 ========== */
+.hero {
+  background: linear-gradient(160deg, #fff0f5 0%, #ede8ff 100%);
+  padding: 56px 0 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(255, 92, 138, 0.12) 0%, transparent 70%);
+  top: -120px;
+  right: -80px;
+  border-radius: 50%;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(108, 92, 231, 0.1) 0%, transparent 70%);
+  bottom: -100px;
+  left: -60px;
+  border-radius: 50%;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.hero-text h1 {
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #ff5c8a, #6c5ce7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-text p {
+  font-size: 16px;
+  color: var(--text-light);
+  margin-bottom: 24px;
+  max-width: 480px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 28px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #ff5c8a, #e63e6d);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(230, 62, 109, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(230, 62, 109, 0.4);
+}
+
+.btn-outline {
+  background: #fff;
+  color: var(--secondary);
+  border: 2px solid #e0d9f5;
+}
+
+.btn-outline:hover {
+  border-color: var(--secondary);
+  transform: translateY(-2px);
+}
+
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(108, 92, 231, 0.12);
+}
+
+.stat-item {
+  text-align: left;
+}
+
+.stat-num {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--primary-dark);
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.hero-visual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.hero-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.hero-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.hero-card .card-emoji {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.hero-card .card-name {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.hero-card .card-desc {
+  font-size: 12px;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+.hero-card:nth-child(1) {
+  background: linear-gradient(135deg, #fff5f8, #ffe8f0);
+}
+
+.hero-card:nth-child(2) {
+  background: linear-gradient(135deg, #f0edff, #e8e2ff);
+}
+
+.hero-card:nth-child(3) {
+  background: linear-gradient(135deg, #e8faf9, #d5f5f3);
+}
+
+.hero-card:nth-child(4) {
+  background: linear-gradient(135deg, #fff9e8, #fff2d5);
+}
+
+/* ========== 通用区块 ========== */
+.section {
+  padding: 56px 0;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 800;
+  position: relative;
+  padding-left: 16px;
+}
+
+.section-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 24px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #ff5c8a, #6c5ce7);
+}
+
+.section-sub {
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+/* ========== 分类导航 ========== */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 14px;
+}
+
+.category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 12px;
+  background: var(--surface);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  transition: transform 0.22s, border-color 0.22s, box-shadow 0.22s;
+  cursor: pointer;
+}
+
+.category-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-hover);
+}
+
+.category-item .cat-icon {
+  font-size: 26px;
+}
+
+.category-item .cat-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.category-item .cat-count {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+/* ========== 推荐卡片 ========== */
+.anime-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.anime-card {
+  background: var(--surface);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.anime-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.anime-thumb {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  position: relative;
+}
+
+.anime-thumb.t1 { background: linear-gradient(135deg, #ffd6e0, #ffb3c6); }
+.anime-thumb.t2 { background: linear-gradient(135deg, #d6e4ff, #b3c6ff); }
+.anime-thumb.t3 { background: linear-gradient(135deg, #d6fff0, #b3ffe0); }
+.anime-thumb.t4 { background: linear-gradient(135deg, #fff0d6, #ffe0b3); }
+.anime-thumb.t5 { background: linear-gradient(135deg, #e8d6ff, #d4b3ff); }
+.anime-thumb.t6 { background: linear-gradient(135deg, #d6f5ff, #b3e8ff); }
+
+.anime-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(255, 92, 138, 0.9);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 10px;
+}
+
+.anime-body {
+  padding: 16px;
+}
+
+.anime-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.anime-meta {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-bottom: 10px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.anime-desc {
+  font-size: 13px;
+  color: var(--text-light);
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ========== 榜单 ========== */
+.rank-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.rank-panel {
+  background: var(--surface);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  padding: 24px;
+}
+
+.rank-panel h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rank-list {
+  list-style: none;
+}
+
+.rank-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--border);
+  font-size: 14px;
+}
+
+.rank-list li:last-child {
+  border-bottom: none;
+}
+
+.rank-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  background: #f3f0f5;
+  color: var(--text-light);
+  flex-shrink: 0;
+}
+
+.rank-num.top1 { background: linear-gradient(135deg, #ff5c8a, #e63e6d); color: #fff; }
+.rank-num.top2 { background: linear-gradient(135deg, #ffa751, #ff8c42); color: #fff; }
+.rank-num.top3 { background: linear-gradient(135deg, #6c5ce7, #5a4bd1); color: #fff; }
+
+.rank-name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.rank-tag {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+/* ========== 指南 ========== */
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.guide-card {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.guide-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.guide-num {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ff5c8a, #6c5ce7);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 16px;
+  margin-bottom: 14px;
+}
+
+.guide-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.guide-card p {
+  font-size: 13px;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+/* ========== FAQ ========== */
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: var(--surface);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.faq-q {
+  padding: 18px 22px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+.faq-q:hover {
+  background: #fdf5f8;
+}
+
+.faq-q::after {
+  content: "+";
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--primary);
+  transition: transform 0.3s;
+}
+
+.faq-item.open .faq-q::after {
+  content: "−";
+}
+
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+  padding: 0 22px;
+  font-size: 14px;
+  color: var(--text-light);
+  line-height: 1.8;
+}
+
+.faq-item.open .faq-a {
+  max-height: 300px;
+  padding: 0 22px 18px;
+}
+
+/* ========== 页脚 ========== */
+.site-footer {
+  background: #1e1b2e;
+  color: rgba(255, 255, 255, 0.72);
+  padding: 48px 0 24px;
+  margin-top: 20px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 36px;
+  margin-bottom: 36px;
+}
+
+.footer-brand .logo {
+  color: #fff;
+  margin-bottom: 14px;
+}
+
+.footer-brand p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.55);
+  max-width: 320px;
+}
+
+.footer-col h4 {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col li {
+  margin-bottom: 8px;
+}
+
+.footer-col a {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.55);
+  transition: color 0.2s;
+}
+
+.footer-col a:hover {
+  color: var(--primary);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ========== 响应式 ========== */
+@media (max-width: 900px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .hero-text h1 {
+    font-size: 30px;
+  }
+
+  .rank-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .main-nav {
+    display: none;
+  }
+
+  .hero {
+    padding: 36px 0 32px;
+  }
+
+  .hero-text h1 {
+    font-size: 26px;
+  }
+
+  .hero-stats {
+    gap: 20px;
+  }
+
+  .stat-num {
+    font-size: 20px;
+  }
+
+  .section {
+    padding: 40px 0;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+
+  .anime-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .anime-thumb {
+    height: 100px;
+    font-size: 32px;
+  }
+
+  .anime-body {
+    padding: 12px;
+  }
+
+  .anime-title {
+    font-size: 14px;
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .category-item {
+    padding: 14px 8px;
+  }
+
+  .category-item .cat-icon {
+    font-size: 22px;
+  }
+
+  .category-item .cat-name {
+    font-size: 12px;
+  }
+
+  .category-item .cat-count {
+    font-size: 11px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#" class="logo">
+      <span class="logo-icon">🎬</span>
+      51动漫
+    </a>
+    <nav>
+      <ul class="main-nav">
+        <li><a href="#" class="active">首页</a></li>
+        <li><a href="#categories">分类</a></li>
+        <li><a href="#recommend">推荐</a></li>
+        <li><a href="#ranking">榜单</a></li>
+        <li><a href="#guide">观看指南</a></li>
+        <li><a href="#faq">常见问题</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- 首屏 -->
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="hero-text">
+        <h1>发现好动画，从 51 动漫开始</h1>
+        <p>51动漫致力于为动漫爱好者提供清晰的分类导航、新番追更思路与口碑作品梳理。无论你喜欢热血、日常、科幻还是治愈系，都能在这里找到适合自己的观看方向。</p>
+        <div class="hero-actions">
+          <a href="#categories" class="btn btn-primary">浏览分类 →</a>
+          <a href="#recommend" class="btn btn-outline">查看推荐</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-num">10+</div>
+            <div class="stat-label">内容分类</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">4季</div>
+            <div class="stat-label">新番周期</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">精选</div>
+            <div class="stat-label">口碑榜单</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="card-emoji">🔥</div>
+          <div class="card-name">热血战斗</div>
+          <div class="card-desc">少年成长与激烈对决</div>
+        </div>
+        <div class="hero-card">
+          <div class="card-emoji">🌸</div>
+          <div class="card-name">日常治愈</div>
+          <div class="card-desc">温暖轻松的校园故事</div>
+        </div>
+        <div class="hero-card">
+          <div class="card-emoji">🚀</div>
+          <div class="card-name">科幻机甲</div>
+          <div class="card-desc">未来世界与科技幻想</div>
+        </div>
+        <div class="hero-card">
+          <div class="card-emoji">🎭</div>
+          <div class="card-name">悬疑推理</div>
+          <div class="card-desc">烧脑剧情层层反转</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 分类 -->
+  <section class="section" id="categories">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">动漫分类导航</h2>
+        <span class="section-sub">按题材与风格快速定位想看的内容</span>
+      </div>
+      <div class="category-grid">
+        <a href="#recommend" class="category-item">
+          <span class="cat-icon">⚔️</span>
+          <span class="cat-name">热血战斗</span>
+          <span class="cat-count">成长与对决</span>
+        </a>
+        <a href="#recommend" class="category-item">
+          <span class="cat-icon">🌙</span>
+          <span class="cat-name">奇幻冒险</span>
+          <span class="cat-count">异世界旅程</span>
+        </a>
+        <a href="#recommend" class="category-item">
+          <span class="cat-icon">🏫</span>
+          <span class="cat-name">校园日常</span>
+          <span class="cat-count">青春与友情</span>
+        </a>
+        <a href="#recommend" class="category-item">
+          <span class="cat-icon">💕</span>
+          <span class="cat-name">恋爱情感</span>
+          <span class="cat-count">心动与羁绊</span>
+        </a>
+        <a href="#recommend" class="category-item">
+          <span class="cat-icon">🔍</span>
+          <span class="cat-name">悬疑推理</span>
+          <span class="cat-count">谜题与真相</span>
+        </a>
+        <a href="#recommend" class="category-item">
+          <span class="cat-icon">🤖</span>
+          <span class="cat-name">科幻机甲</span>
+          <span class="cat-count">未来与科技</span>
+        </a>
+        <a href="#recommend" class="category-item">
+          <span class="cat-icon">🍃</span>
+          <span class="cat-name">治愈温情</span>
+          <span class="cat-count">温暖与感动</span>
+        </a>
+        <a href="#recommend" class="category-item">
+          <span class="cat-icon">😂</span>
+          <span class="cat-name">搞笑喜剧</span>
+          <span class="cat-count">轻松与欢乐</span>
+        </a>
+        <a href="#recommend" class="category-item">
+          <span class="cat-icon">🎵</span>
+          <span class="cat-name">音乐偶像</span>
+          <span class="cat-count">舞台与梦想</span>
+        </a>
+        <a href="#recommend" class="category-item">
+          <span class="cat-icon">🏀</span>
+          <span class="cat-name">运动竞技</span>
+          <span class="cat-count">拼搏与荣耀</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 推荐 -->
+  <section class="section" id="recommend" style="background: #fff;">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">编辑推荐方向</h2>
+        <span class="section-sub">从不同角度发现值得一看的作品</span>
+      </div>
+      <div class="anime-grid">
+        <article class="anime-card">
+          <div class="anime-thumb t1">
+            <span>⚔️</span>
+            <span class="anime-badge">热血</span>
+          </div>
+          <div class="anime-body">
+            <h3 class="anime-title">少年成长系</h3>
+            <div class="anime-meta"><span>冒险</span><span>友情</span></div>
+            <p class="anime-desc">主角从平凡走向强大，在挫折与战斗中不断突破自我，适合喜欢燃向剧情的观众。</p>
+          </div>
+        </article>
+        <article class="anime-card">
+          <div class="anime-thumb t2">
+            <span>🌙</span>
+            <span class="anime-badge">奇幻</span>
+          </div>
+          <div class="anime-body">
+            <h3 class="anime-title">异世界冒险</h3>
+            <div class="anime-meta"><span>幻想</span><span>世界观</span></div>
+            <p class="anime-desc">构建独特的魔法与种族设定，跟随主角探索未知大陆，体验沉浸式的世界观展开。</p>
+          </div>
+        </article>
+        <article class="anime-card">
+          <div class="anime-thumb t3">
+            <span>🍃</span>
+            <span class="anime-badge">治愈</span>
+          </div>
+          <div class="anime-body">
+            <h3 class="anime-title">日常治愈系</h3>
+            <div class="anime-meta"><span>生活</span><span>温情</span></div>
+            <p class="anime-desc">节奏舒缓、情感细腻，用平凡日常传递温暖，适合放松心情时观看。</p>
+          </div>
+        </article>
+        <article class="anime-card">
+          <div class="anime-thumb t4">
+            <span>🔍</span>
+            <span class="anime-badge">悬疑</span>
+          </div>
+          <div class="anime-body">
+            <h3 class="anime-title">悬疑推理系</h3>
+            <div class="anime-meta"><span>烧脑</span><span>反转</span></div>
+            <p class="anime-desc">层层递进的线索与出人意料的真相，适合喜欢跟着剧情一起思考的观众。</p>
+          </div>
+        </article>
+        <article class="anime-card">
+          <div class="anime-thumb t5">
+            <span>💕</span>
+            <span class="anime-badge">恋爱</span>
+          </div>
+          <div class="anime-body">
+            <h3 class="anime-title">青春恋爱系</h3>
+            <div class="anime-meta"><span>校园</span><span>心动</span></div>
+            <p class="anime-desc">聚焦角色之间的情感变化与细腻互动，描绘青春期的悸动与成长。</p>
+          </div>
+        </article>
+        <article class="anime-card">
+          <div class="anime-thumb t6">
+            <span>🤖</span>
+            <span class="anime-badge">科幻</span>
+          </div>
+          <div class="anime-body">
+            <h3 class="anime-title">科幻机战系</h3>
+            <div class="anime-meta"><span>未来</span><span>机甲</span></div>
+            <p class="anime-desc">以科技与战争为背景，探讨人性与未来的关系，画面与设定往往极具想象力。</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 榜单 -->
+  <section class="section" id="ranking">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">口碑榜单参考</h2>
+        <span class="section-sub">综合讨论热度与观众反馈的观看方向</span>
+      </div>
+      <div class="rank-layout">
+        <div class="rank-panel">
+          <h3>🔥 热度关注方向</h3>
+          <ul class="rank-list">
+            <li><span class="rank-num top1">1</span><span class="rank-name">热血少年成长类</span><span class="rank-tag">长期热门</span></li>
+            <li><span class="rank-num top2">2</span><span class="rank-name">异世界奇幻冒险类</span><span class="rank-tag">讨论度高</span></li>
+            <li><span class="rank-num top3">3</span><span class="rank-name">校园恋爱日常类</span><span class="rank-tag">稳定受众</span></li>
+            <li><span class="rank-num">4</span><span class="rank-name">悬疑推理烧脑类</span><span class="rank-tag">口碑向</span></li>
+            <li><span class="rank-num">5</span><span class="rank-name">科幻机甲战斗类</span><span class="rank-tag">硬核向</span></li>
+            <li><span class="rank-num">6</span><span class="rank-name">治愈温情生活类</span><span class="rank-tag">放松向</span></li>
+          </ul>
+        </div>
+        <div class="rank-panel">
+          <h3>⭐ 口碑评价方向</h3>
+          <ul class="rank-list">
+            <li><span class="rank-num top1">1</span><span class="rank-name">剧情完整、节奏扎实</span><span class="rank-tag">评价高</span></li>
+            <li><span class="rank-num top2">2</span><span class="rank-name">角色塑造立体丰满</span><span class="rank-tag">代入感强</span></li>
+            <li><span class="rank-num top3">3</span><span class="rank-name">作画与音乐表现突出</span><span class="rank-tag">视听佳</span></li>
+            <li><span class="rank-num">4</span><span class="rank-name">世界观设定新颖</span><span class="rank-tag">创意向</span></li>
+            <li><span class="rank-num">5</span><span class="rank-name">情感表达真挚动人</span><span class="rank-tag">共鸣强</span></li>
+            <li><span class="rank-num">6</span><span class="rank-name">适合反复回看</span><span class="rank-tag">耐看型</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 观看指南 -->
+  <section class="section" id="guide" style="background: #fff;">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">动漫观看实用指南</h2>
+        <span class="section-sub">帮助你更高效地找到并享受喜欢的作品</span>
+      </div>
+      <div class="guide-grid">
+        <div class="guide-card">
+          <div class="guide-num">1</div>
+          <h3>明确自己的偏好类型</h3>
+          <p>先想清楚自己更喜欢热血、日常、悬疑还是恋爱等方向。按类型筛选能大幅减少选择成本，避免在大量作品中迷失。</p>
+        </div>
+        <div class="guide-card">
+          <div class="guide-num">2</div>
+          <h3>关注新番更新周期</h3>
+          <p>动画通常按季度播出，分为一月、四月、七月和十月新番。了解周期节奏，有助于合理安排追更计划，避免错过更新。</p>
+        </div>
+        <div class="guide-card">
+          <div class="guide-num">3</div>
+          <h3>参考多来源评价</h3>
+          <p>单一看法往往有局限，可以综合观众讨论、剧情简介和制作阵容等信息，形成更全面的判断，找到真正适合自己的作品。</p>
+        </div>
+        <div class="guide-card">
+          <div class="guide-num">4</div>
+          <h3>注意作品分级与内容提示</h3>
+          <p>不同作品在题材和表现手法上差异较大，观看前留意内容简介与分级提示，选择与自身接受度相符的内容。</p>
+        </div>
+        <div class="guide-card">
+          <div class="guide-num">5</div>
+          <h3>合理安排观看时间</h3>
+          <p>追更容易上头，建议设定固定的观看时段，避免影响工作与休息。把动画当作放松方式，而不是负担。</p>
+        </div>
+        <div class="guide-card">
+          <div class="guide-num">6</div>
+          <h3>建立自己的片单</h3>
+          <p>把感兴趣的作品记录下来，按优先级排序。看完后简单标注感受，长期积累会形成一份非常实用的个人观看档案。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">常见问题</h2>
+        <span class="section-sub">关于动漫浏览与观看的常见疑问</span>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q">51动漫主要提供什么内容？</div>
+          <div class="faq-a">51动漫围绕动漫作品的分类浏览、新番追更思路、口碑榜单参考和观看指南展开，帮助用户更高效地发现和选择适合自己的动画作品。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">如何快速找到自己想看的类型？</div>
+          <div class="faq-a">可以先通过分类导航确定大方向，比如热血、日常、悬疑或恋爱，再结合推荐方向和榜单参考进一步筛选，逐步缩小范围。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">新番一般什么时候更新？</div>
+          <div class="faq-a">动画通常按季度播出，主要集中在一月、四月、七月和十月。具体更新时间因作品而异，建议关注官方发布的信息和作品页面说明。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">怎样判断一部动画是否适合自己？</div>
+          <div class="faq-a">可以从题材类型、剧情简介、角色设定和观众讨论等多个角度综合判断。先看一两集试看，再决定是否继续追更，是比较稳妥的方式。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">观看动画时需要注意什么？</div>
+          <div class="faq-a">建议留意作品的内容分级与题材提示，选择与自身接受度相符的内容；同时合理安排观看时间，保持健康的作息节奏。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-icon">🎬</span>
+          51动漫
+        </div>
+        <p>51动漫是一个面向动漫爱好者的内容导航页面，提供分类浏览、新番追更思路、口碑榜单参考与观看指南，帮助你更轻松地发现喜欢的动画作品。</p>
+      </div>
+      <div class="footer-col">
+        <h4>内容导航</h4>
+        <ul>
+          <li><a href="#categories">分类浏览</a></li>
+          <li><a href="#recommend">编辑推荐</a></li>
+          <li><a href="#ranking">口碑榜单</a></li>
+          <li><a href="#guide">观看指南</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>热门类型</h4>
+        <ul>
+          <li><a href="#recommend">热血战斗</a></li>
+          <li><a href="#recommend">奇幻冒险</a></li>
+          <li><a href="#recommend">校园日常</a></li>
+          <li><a href="#recommend">悬疑推理</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>帮助信息</h4>
+        <ul>
+          <li><a href="#faq">常见问题</a></li>
+          <li><a href="#guide">观看建议</a></li>
+          <li><a href="#guide">片单管理</a></li>
+          <li><a href="#faq">内容分级</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 51动漫 · 内容导航与观看指南</span>
+      <span>页面内容仅供参考，具体作品信息请以官方发布为准</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(function (q) {
+  q.addEventListener('click', function () {
+    var item = this.parentElement;
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function (el) {
+      el.classList.remove('open');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+    }
+  });
+});
+
+document.querySelectorAll('.main-nav a[href^="#"]').forEach(function (link) {
+  link.addEventListener('click', function (e) {
+    var target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+              </html>
